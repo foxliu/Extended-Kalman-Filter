@@ -71,8 +71,9 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
     else if (y_[1] < -M_PI) y_[1] += 2.0f * M_PI;
 
     Eigen::MatrixXd Ht = H_.transpose();
-    Eigen::MatrixXd S_ = H_ * P_ * Ht + R_;
-    Eigen::MatrixXd K_ = P_ * Ht * S_.inverse();
+    Eigen::MatrixXd PHt = P_ * Ht;
+    Eigen::MatrixXd S_ = H_ * PHt + R_;
+    Eigen::MatrixXd K_ = PHt * S_.inverse();
     x_ = x_ + (K_ * y_);
 
     long x_size = x_.size();

@@ -3,6 +3,8 @@
 #include <vector>
 #include "Eigen/Dense"
 
+#define LEAST_C1 0.0001
+
 using Eigen::MatrixXd;
 using Eigen::VectorXd;
 using namespace std;

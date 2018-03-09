@@ -2,6 +2,11 @@
 #define KALMAN_FILTER_H_
 #include "Eigen/Dense"
 
+#define LEAST_C 0.0000001
+#define C_VALUE(C) ((C) < LEAST_C ? LEAST_C : (C))
+#define PI2 2.0 * M_PI
+#define MODE_PHI(phi) if ((phi) > M_PI) phi -= PI2; else if ((phi) < -M_PI) phi += PI2
+
 class KalmanFilter {
 public:
 
@@ -63,6 +68,14 @@ public:
    * @param z The measurement at k+1
    */
   void UpdateEKF(const Eigen::VectorXd &z);
+
+private:
+
+  /**
+   * update the state both in KF and EKF
+   * @param y the y state
+   */
+  void update(const Eigen::VectorXd &y_);
 
 };
 

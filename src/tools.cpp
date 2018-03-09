@@ -57,7 +57,7 @@ MatrixXd Tools::CalculateJacobian(const VectorXd &x_state) {
     double c2 = sqrt(c1);
     double c3 = c1 * c2;
 
-    if (c1 < 0.0001) {
+    if (c1 < LEAST_C1) {
         cout << "CalculateJacobian () - Error - Division by Zero" << endl;
         return Hj;
     }
